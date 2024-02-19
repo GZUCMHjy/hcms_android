@@ -80,10 +80,11 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }
                             // 全局保存sessionId
-//                            JsessionId.saveUser(jsessionid);
-                            SharedPreferences preferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = preferences.edit();
-                            editor.putString("sessionId", sessionid);
+                            // JsessionId.saveUser(jsessionid);
+                            SharedPreferences sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("session",sessionid);
+                            editor.commit();
                             // 解析服务器返回的json对象成json字符串
                             String objStr = response.body().string();
                             // 字符串再转成Java对象

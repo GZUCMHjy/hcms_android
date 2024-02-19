@@ -144,12 +144,12 @@ public class IndexActivity extends AppCompatActivity {
                             // 构建请求客户端
                             OkHttpClient okHttpClient = new OkHttpClient();
                             // 获取用户登录的session值
-                            SharedPreferences preferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
-                            String sessionId = preferences.getString("sessionId", "");
+                            SharedPreferences sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
+                            String cookie = sharedPreferences.getString("session","");
                             // 构建请求url
                             Request request = new Request.Builder()
                                     .url(Constant.BASE_URL + "/getUserInfo") // 登录请求
-                                    .addHeader("Cookie", "JSESSIONID=" + sessionId)
+                                    .addHeader("Cookie", "JSESSIONID=" + cookie)
                                     .get()
                                     .build();// 创建http请求
                             Response response = okHttpClient.newCall(request).execute();
