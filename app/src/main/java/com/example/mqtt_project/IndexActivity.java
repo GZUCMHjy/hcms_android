@@ -1,13 +1,11 @@
 package com.example.mqtt_project;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -18,18 +16,14 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.mqtt_project.common.BaseResponse;
-import com.example.mqtt_project.common.JsessionId;
 import com.example.mqtt_project.constant.Constant;
-import com.example.mqtt_project.request.LoginRequest;
 import com.example.mqtt_project.utils.JsonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class IndexActivity extends AppCompatActivity {

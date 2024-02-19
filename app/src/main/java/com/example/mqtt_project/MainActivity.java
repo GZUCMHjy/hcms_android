@@ -2,31 +2,21 @@ package com.example.mqtt_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.mqtt_project.common.BaseResponse;
-import com.example.mqtt_project.common.JsessionId;
 import com.example.mqtt_project.constant.Constant;
 import com.example.mqtt_project.request.LoginRequest;
 import com.example.mqtt_project.utils.JsonUtil;
-import com.google.gson.Gson;
+
 import java.util.List;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.IOException;
-
-import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -64,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                             Response response = okHttpClient.newCall(request).execute();
                             // 获取响应头中的所有 Cookie
                             List<String> cookies = response.headers("Set-Cookie");
-                        // 遍历所有的 Cookie，寻找 JSESSIONID
+                            // 遍历所有的 Cookie，寻找 JSESSIONID
                             String sessionid = null;
                             for (String cookie : cookies) {
                                 if (cookie.contains("JSESSIONID")) {
@@ -84,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                             SharedPreferences sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putString("session",sessionid);
+                            // 要提交上去，否则取不到
                             editor.commit();
                             // 解析服务器返回的json对象成json字符串
                             String objStr = response.body().string();
