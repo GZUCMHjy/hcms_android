@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+<!--连接不上是确实少了这个配置文件！！！-->
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>
