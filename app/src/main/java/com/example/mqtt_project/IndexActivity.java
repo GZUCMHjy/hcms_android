@@ -1,5 +1,6 @@
 package com.example.mqtt_project;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +19,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.mqtt_project.common.BaseResponse;
 import com.example.mqtt_project.constant.Constant;
+import com.example.mqtt_project.reponse.UserInfo;
 import com.example.mqtt_project.utils.JsonUtil;
 
 import java.util.ArrayList;
@@ -151,7 +154,26 @@ public class IndexActivity extends AppCompatActivity {
                             String objStr = response.body().string();
                             // 字符串再转成Java对象
                             BaseResponse baseResponse = JsonUtil.fromJson(objStr, BaseResponse.class);
-                            Object data = (Object) baseResponse.getData();
+                            // todo 强转这里有问题！！！
+                            UserInfo data = (UserInfo) baseResponse.getData();
+                            String gender = data.getUser_gender();
+                            String name = data.getUser_name();
+                            String tel = data.getUser_tel();
+                            String wh_id = data.getWh_id();
+                            String position = data.getUser_position();
+                            String institution = data.getUser_institution();
+                            @SuppressLint("WrongViewCast") TextView textViewGender = findViewById(R.id.gender);
+                            @SuppressLint("WrongViewCast") TextView textViewName = findViewById(R.id.name);
+                            @SuppressLint("WrongViewCast") TextView textViewTel = findViewById(R.id.tel);
+                            @SuppressLint("WrongViewCast") TextView textViewWh_id = findViewById(R.id.wh_id);
+                            @SuppressLint("WrongViewCast") TextView textViewPosition = findViewById(R.id.position);
+                            @SuppressLint("WrongViewCast") TextView textViewInstitution = findViewById(R.id.institution);
+                            textViewGender.setText(gender);
+                            textViewName.setText(name);
+                            textViewTel.setText(tel);
+                            textViewWh_id.setText(wh_id);
+                            textViewPosition.setText(position);
+                            textViewInstitution.setText(institution);
                             String message = baseResponse.getMessage();
                             runOnUiThread(new Runnable() {
                                 @Override
