@@ -1,20 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:autofillHints="请输入关键字"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:background="@color/white"
-    >
-    <ImageView
+    android:background="@color/white">
+
+    <LinearLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:src="@mipmap/zz_xiezhen"/>
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="信息"
-        android:textSize="1sp"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        android:layout_gravity="center" />
+        android:orientation="horizontal"
+        tools:ignore="ExtraText">
+
+        <androidx.appcompat.widget.SearchView
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:outlineSpotShadowColor="@color/teal"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:background="@drawable/search_view_bg"
+            android:theme="@style/searchStyle"
+            app:queryHint="请输入关键字"
+            app:iconifiedByDefault="false"
+            app:searchIcon="@mipmap/ic_search">
+        </androidx.appcompat.widget.SearchView>
+
+        <!--扫码功能-->
+        <Button
+            android:id="@+id/scanCode"
+            android:layout_width="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="30dp"
+            android:onClick="scanCode"
+            android:background="@mipmap/scan"
+            >
+        </Button>
+
+    </LinearLayout>
+
+
+
 </LinearLayout>
