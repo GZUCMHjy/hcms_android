@@ -154,14 +154,18 @@ public class IndexActivity extends AppCompatActivity {
                             String objStr = response.body().string();
                             // 字符串再转成Java对象
                             BaseResponse baseResponse = JsonUtil.fromJson(objStr, BaseResponse.class);
+
                             // todo 强转这里有问题！！！
-                            UserInfo data = (UserInfo) baseResponse.getData();
-                            String gender = data.getUser_gender();
-                            String name = data.getUser_name();
-                            String tel = data.getUser_tel();
-                            String wh_id = data.getWh_id();
-                            String position = data.getUser_position();
-                            String institution = data.getUser_institution();
+                            Object data = baseResponse.getData();
+                            String json = JsonUtil.toJson(data);
+                            UserInfo user = JsonUtil.fromJson(json, UserInfo.class);
+
+                            String gender = user.getUser_gender();
+                            String name = user.getUser_name();
+                            String tel = user.getUser_tel();
+                            String wh_id = user.getWh_id();
+                            String position = user.getUser_position();
+                            String institution = user.getUser_institution();
                             @SuppressLint("WrongViewCast") TextView textViewGender = findViewById(R.id.gender);
                             @SuppressLint("WrongViewCast") TextView textViewName = findViewById(R.id.name);
                             @SuppressLint("WrongViewCast") TextView textViewTel = findViewById(R.id.tel);
