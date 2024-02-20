@@ -44,16 +44,16 @@ public class IndexActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (i) {
-                    case 2131231085:
+                    case 2131231083:
                         mViewPager.setCurrentItem(0);
                         break;
-                    case 2131231086:
+                    case 2131231084:
                         mViewPager.setCurrentItem(1);
                         break;
-                    case 2131231083:
+                    case 2131231081:
                         mViewPager.setCurrentItem(2);
                         break;
-                    case 2131231084:
+                    case 2131231082:
                         mViewPager.setCurrentItem(3);
                         break;
                 }
