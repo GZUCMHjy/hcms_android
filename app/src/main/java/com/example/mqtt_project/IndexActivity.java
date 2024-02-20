@@ -1,6 +1,5 @@
 package com.example.mqtt_project;
 
-import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -154,34 +153,42 @@ public class IndexActivity extends AppCompatActivity {
                             String objStr = response.body().string();
                             // 字符串再转成Java对象
                             BaseResponse baseResponse = JsonUtil.fromJson(objStr, BaseResponse.class);
-
-                            // todo 强转这里有问题！！！
+                            // 取出data对象
                             Object data = baseResponse.getData();
+                            // 转成字符串
                             String json = JsonUtil.toJson(data);
+                            // 二次转成指定对象（否则直接强转会失败）
                             UserInfo user = JsonUtil.fromJson(json, UserInfo.class);
-
                             String gender = user.getUser_gender();
                             String name = user.getUser_name();
                             String tel = user.getUser_tel();
-                            String wh_id = user.getWh_id();
+                            String lab_id = user.getLab_id().toString();
                             String position = user.getUser_position();
                             String institution = user.getUser_institution();
-                            @SuppressLint("WrongViewCast") TextView textViewGender = findViewById(R.id.gender);
-                            @SuppressLint("WrongViewCast") TextView textViewName = findViewById(R.id.name);
-                            @SuppressLint("WrongViewCast") TextView textViewTel = findViewById(R.id.tel);
-                            @SuppressLint("WrongViewCast") TextView textViewWh_id = findViewById(R.id.wh_id);
-                            @SuppressLint("WrongViewCast") TextView textViewPosition = findViewById(R.id.position);
-                            @SuppressLint("WrongViewCast") TextView textViewInstitution = findViewById(R.id.institution);
-                            textViewGender.setText(gender);
-                            textViewName.setText(name);
-                            textViewTel.setText(tel);
-                            textViewWh_id.setText(wh_id);
-                            textViewPosition.setText(position);
-                            textViewInstitution.setText(institution);
-                            String message = baseResponse.getMessage();
+
+                            TextView textViewGender = findViewById(R.id.gender);
+                            TextView textViewName = findViewById(R.id.name);
+                            TextView textViewTel = findViewById(R.id.tel);
+                            TextView textViewLab_id = findViewById(R.id.lab_id);
+                            TextView textViewPosition = findViewById(R.id.position);
+                            TextView textViewInstitution = findViewById(R.id.institution);
+
+                            // 更新操作 要在子线程runOnUiThread中进行
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    try{
+                                        textViewGender.setText(gender+"");
+                                    }catch (Exception e){
+                                        e.printStackTrace();
+                                    }
+
+                                    textViewName.setText(name+"");
+                                    textViewTel.setText(tel+"");
+                                    textViewLab_id.setText(lab_id+"");
+                                    textViewPosition.setText(position+"");
+                                    textViewInstitution.setText(institution+"");
+                                    String message = baseResponse.getMessage();
                                     // 子线程运行
                                     // 是否进行页面跳转
                                     if(message.equals("ok")){

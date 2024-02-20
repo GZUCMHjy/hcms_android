@@ -4,7 +4,7 @@ public class UserInfo {
     private String user_name;
     private String user_tel;
     private String user_gender;
-    private String wh_id;
+    private Integer lab_id;
     private String user_position;
     private String user_institution;
 
@@ -32,12 +32,12 @@ public class UserInfo {
         this.user_gender = user_gender;
     }
 
-    public String getWh_id() {
-        return wh_id;
+    public Integer getLab_id() {
+        return lab_id;
     }
 
-    public void setWh_id(String wh_id) {
-        this.wh_id = wh_id;
+    public void setLab_id(Integer lab_id) {
+        this.lab_id = lab_id;
     }
 
     public String getUser_position() {
