@@ -1,8 +1,10 @@
 package com.example.mqtt_project;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,9 @@ import com.example.mqtt_project.common.BaseResponse;
 import com.example.mqtt_project.constant.Constant;
 import com.example.mqtt_project.reponse.UserInfo;
 import com.example.mqtt_project.utils.JsonUtil;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+import com.journeyapps.barcodescanner.CaptureActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,24 +73,33 @@ public class IndexActivity extends AppCompatActivity {
                 }
             }
         });
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View msgLayout = inflater.inflate(R.layout.msg, null);
+
+        // 通过加载后的布局对象来获取其中的Button控件
         // todo 有问题
         // 绑定监听事件
-//        Button button = findViewById(R.id.scanCode);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // 当前页面跳转扫码页面
-//                Intent intent = new Intent(IndexActivity.this, CaptureActivity.class);
-//                new IntentIntegrator(IndexActivity.this)
-//                        .setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)// 扫码的类型,可选：一维码，二维码，一/二维码
-//                        .setCaptureActivity(CarmerActivity.class)
-//                        .setPrompt("请对准二维码")// 设置提示语
-//                        .setCameraId(0)// 选择摄像头,可使用前置或者后置
-//                        .setBeepEnabled(false)// 是否开启声音,扫完码之后会"哔"的一声
-//                        .setBarcodeImageEnabled(true)// 扫完码之后生成二维码的图片
-//                        .initiateScan();// 初始化扫码
-//            }
-//        });
+        setContentView(R.layout.msg);
+        Button button = (Button) this.findViewById(R.id.scanCode);
+        if (button != null) {
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // 当前页面跳转扫码页面
+                    Intent intent = new Intent(IndexActivity.this, CaptureActivity.class);
+                    new IntentIntegrator(IndexActivity.this)
+                            .setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)// 扫码的类型,可选：一维码，二维码，一/二维码
+                            .setCaptureActivity(CarmerActivity.class)
+                            .setPrompt("请对准二维码")// 设置提示语
+                            .setCameraId(0)// 选择摄像头,可使用前置或者后置
+                            .setBeepEnabled(false)// 是否开启声音,扫完码之后会"哔"的一声
+                            .setBarcodeImageEnabled(true)// 扫完码之后生成二维码的图片
+                            .initiateScan();// 初始化扫码
+                }
+            });
+        } else {
+            Log.e("IndexActivity", "Button is null");
+        }
     }
 
 
@@ -283,38 +297,9 @@ public class IndexActivity extends AppCompatActivity {
         }
     }
 
-//    private void checkCameraPermission() {
-//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-//            // 请求相机权限
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST_CODE);
-//        } else {
-//            // 已经有相机权限，直接打开相机
-//            openCamera();
-//        }
-//    }
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
-//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                // 用户授予了相机权限
-//                openCamera();
-//            } else {
-//                // 用户拒绝了相机权限
-//                Toast.makeText(this, "需要相机权限才能打开相机", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    }
-//    private void openCamera() {
-//        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
-//            startActivityForResult(cameraIntent, OPEN_CAMERA_REQUEST_CODE);
-//        } else {
-//            Toast.makeText(this, "无法打开相机应用程序", Toast.LENGTH_SHORT).show();
-//        }
-//    }
     /**
-     * 获取扫描结果
+     * 回调函数
+     * 获取扫描返回的结果
      * @param requestCode The integer request code originally supplied to
      *                    startActivityForResult(), allowing you to identify who this
      *                    result came from.
@@ -324,17 +309,17 @@ public class IndexActivity extends AppCompatActivity {
      *               (various data can be attached to Intent "extras").
      *
      */
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-//        if(result != null) {
-//            if(result.getContents() == null) {
-//                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-//            } else {
-//                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-//            }
-//        } else {
-//            super.onActivityResult(requestCode, resultCode, data);
-//        }
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if(result != null) {
+            if(result.getContents() == null) {
+                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 }

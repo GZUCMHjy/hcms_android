@@ -14,7 +14,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -49,13 +48,13 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     implementation("androidx.navigation:navigation-fragment:2.6.0")
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+//    implementation("com.google.zxing:zxing-parent:3.4.1")
+//    implementation ("com.google.zxing:core:3.3.3")
     implementation("androidx.navigation:navigation-ui:2.6.0")
-
     testImplementation("junit:junit:4.13.2")
-
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     // https://mvnrepository.com/artifact/org.projectlombok/lombok
     compileOnly("org.projectlombok:lombok:1.18.24")
-
 }
