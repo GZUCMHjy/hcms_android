@@ -1,5 +1,6 @@
 package com.example.mqtt_project;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -28,12 +29,25 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+
 public class IndexActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private RadioGroup mRadioGroup;
     private RadioButton tab1,tab2,tab3,tab4;  //四个单选按钮
     private List<View> mViews;   //存放视图
+    private static final int CAMERA_PERMISSION_REQUEST_CODE = 1001;
+    private static final int OPEN_CAMERA_REQUEST_CODE = 1002;
 
+    private Button openCameraButton;
+
+    /**
+     * 启动IndexActivity
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,24 +56,38 @@ public class IndexActivity extends AppCompatActivity {
         //对单选按钮进行监听，选中、未选中
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch (i) {
-                    case 2131231083:
-                        mViewPager.setCurrentItem(0);
-                        break;
-                    case 2131231084:
-                        mViewPager.setCurrentItem(1);
-                        break;
-                    case 2131231081:
-                        mViewPager.setCurrentItem(2);
-                        break;
-                    case 2131231082:
-                        mViewPager.setCurrentItem(3);
-                        break;
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                if (checkedId == R.id.rb_msg) {
+                    mViewPager.setCurrentItem(0);
+                } else if (checkedId == R.id.rb_people) {
+                    mViewPager.setCurrentItem(1);
+                } else if (checkedId == R.id.rb_find) {
+                    mViewPager.setCurrentItem(2);
+                } else if (checkedId == R.id.rb_me) {
+                    mViewPager.setCurrentItem(3);
                 }
             }
         });
+        // todo 有问题
+        // 绑定监听事件
+//        Button button = findViewById(R.id.scanCode);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // 当前页面跳转扫码页面
+//                Intent intent = new Intent(IndexActivity.this, CaptureActivity.class);
+//                new IntentIntegrator(IndexActivity.this)
+//                        .setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)// 扫码的类型,可选：一维码，二维码，一/二维码
+//                        .setCaptureActivity(CarmerActivity.class)
+//                        .setPrompt("请对准二维码")// 设置提示语
+//                        .setCameraId(0)// 选择摄像头,可使用前置或者后置
+//                        .setBeepEnabled(false)// 是否开启声音,扫完码之后会"哔"的一声
+//                        .setBarcodeImageEnabled(true)// 扫完码之后生成二维码的图片
+//                        .initiateScan();// 初始化扫码
+//            }
+//        });
     }
+
 
     /**
      * 初始化页面
@@ -214,7 +242,22 @@ public class IndexActivity extends AppCompatActivity {
         });
     }
 
-    //ViewPager适配器
+    /**
+     * 扫码绑定触发事件
+     * @param view
+     */
+//    public void scanCode(View view) {
+//        // 1. 调用手机摄像头权限
+//        // 2. 读取二维码信息
+//        // 3. 发送请求（告知pc端二维码状态改为已扫描待确定）
+//        // 3. 解密
+//        // 4. 封装
+//        // 5. 发送请求（告知pc端二维码状态改为已确定）
+//    }
+
+    /**
+     * 视图适配器
+     */
     private class MyViewPagerAdapter extends PagerAdapter {
         @Override
         public int getCount() {
@@ -240,4 +283,58 @@ public class IndexActivity extends AppCompatActivity {
         }
     }
 
+//    private void checkCameraPermission() {
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+//            // 请求相机权限
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST_CODE);
+//        } else {
+//            // 已经有相机权限，直接打开相机
+//            openCamera();
+//        }
+//    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
+//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                // 用户授予了相机权限
+//                openCamera();
+//            } else {
+//                // 用户拒绝了相机权限
+//                Toast.makeText(this, "需要相机权限才能打开相机", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    }
+//    private void openCamera() {
+//        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+//            startActivityForResult(cameraIntent, OPEN_CAMERA_REQUEST_CODE);
+//        } else {
+//            Toast.makeText(this, "无法打开相机应用程序", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+    /**
+     * 获取扫描结果
+     * @param requestCode The integer request code originally supplied to
+     *                    startActivityForResult(), allowing you to identify who this
+     *                    result came from.
+     * @param resultCode The integer result code returned by the child activity
+     *                   through its setResult().
+     * @param data An Intent, which can return result data to the caller
+     *               (various data can be attached to Intent "extras").
+     *
+     */
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+//        if(result != null) {
+//            if(result.getContents() == null) {
+//                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+//            } else {
+//                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+//            }
+//        } else {
+//            super.onActivityResult(requestCode, resultCode, data);
+//        }
+//    }
 }
