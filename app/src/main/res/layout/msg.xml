@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="50dp"
     android:autofillHints="请输入关键字"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
@@ -11,7 +11,7 @@
     <LinearLayout
         android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         tools:ignore="ExtraText">
 
@@ -36,11 +36,20 @@
             android:layout_marginLeft="10dp"
             android:layout_height="30dp"
             android:background="@mipmap/scan"
+            android:onClick="onScanCodeClicked"
             >
         </Button>
 
     </LinearLayout>
 
+
+<!--    <TextView-->
+<!--        android:layout_width="236dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:text="MSG"-->
+<!--        android:textColor="#ff0000"-->
+<!--        android:textSize="50sp" />-->
 
 
 </LinearLayout>

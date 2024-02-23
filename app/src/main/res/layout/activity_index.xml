@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.mqtt_project.IndexActivity">
@@ -75,7 +76,6 @@
             android:paddingLeft="0dp"
             android:textSize="10dp"
             android:onClick="getUserInfo"
-            android:text="我"
-            tools:ignore="OnClick" />
+            android:text="我" />
     </RadioGroup>
 </RelativeLayout>

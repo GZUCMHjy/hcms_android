@@ -4,13 +4,13 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,18 +58,35 @@ public class IndexActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
         initView();//初始化数据
+        final RelativeLayout container = findViewById(R.id.container);
         //对单选按钮进行监听，选中、未选中
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 if (checkedId == R.id.rb_msg) {
+                    //new Intent(IndexActivity.this,MsgActivity.class);
                     mViewPager.setCurrentItem(0);
+//                    container.removeAllViews();
+//                    View msgLayout = LayoutInflater.from(IndexActivity.this).inflate(R.layout.msg, container, false);
+//                    container.addView(msgLayout);
                 } else if (checkedId == R.id.rb_people) {
+                    //new Intent(IndexActivity.this,PeopleActivity.class);
                     mViewPager.setCurrentItem(1);
+//                    container.removeAllViews();
+//                    View peopleLayout = LayoutInflater.from(IndexActivity.this).inflate(R.layout.people, container, false);
+//                    container.addView(peopleLayout);
                 } else if (checkedId == R.id.rb_find) {
+                    //new Intent(IndexActivity.this,FindActivity.class);
                     mViewPager.setCurrentItem(2);
+//                    container.removeAllViews();
+//                    View findLayout = LayoutInflater.from(IndexActivity.this).inflate(R.layout.find, container, false);
+//                    container.addView(findLayout);
                 } else if (checkedId == R.id.rb_me) {
+                    //new Intent(IndexActivity.this,MeActivity.class);
                     mViewPager.setCurrentItem(3);
+//                    container.removeAllViews();
+//                    View meLayout = LayoutInflater.from(IndexActivity.this).inflate(R.layout.me, container, false);
+//                    container.addView(meLayout);
                 }
             }
         });
@@ -77,32 +94,44 @@ public class IndexActivity extends AppCompatActivity {
         View msgLayout = inflater.inflate(R.layout.msg, null);
 
         // 通过加载后的布局对象来获取其中的Button控件
-        // todo 有问题
         // 绑定监听事件
-        setContentView(R.layout.msg);
-        Button button = (Button) this.findViewById(R.id.scanCode);
-        if (button != null) {
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // 当前页面跳转扫码页面
-                    Intent intent = new Intent(IndexActivity.this, CaptureActivity.class);
-                    new IntentIntegrator(IndexActivity.this)
-                            .setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)// 扫码的类型,可选：一维码，二维码，一/二维码
-                            .setCaptureActivity(CarmerActivity.class)
-                            .setPrompt("请对准二维码")// 设置提示语
-                            .setCameraId(0)// 选择摄像头,可使用前置或者后置
-                            .setBeepEnabled(false)// 是否开启声音,扫完码之后会"哔"的一声
-                            .setBarcodeImageEnabled(true)// 扫完码之后生成二维码的图片
-                            .initiateScan();// 初始化扫码
-                }
-            });
-        } else {
-            Log.e("IndexActivity", "Button is null");
-        }
+//        setContentView(R.layout.msg);
+//        Button button = (Button) this.findViewById(R.id.scanCode);
+//        if (button != null) {
+//            button.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    // 当前页面跳转扫码页面
+//                    Intent intent = new Intent(IndexActivity.this, CaptureActivity.class);
+//                    new IntentIntegrator(IndexActivity.this)
+//                            .setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)// 扫码的类型,可选：一维码，二维码，一/二维码
+//                            .setCaptureActivity(CarmerActivity.class)
+//                            .setPrompt("请对准二维码")// 设置提示语
+//                            .setCameraId(0)// 选择摄像头,可使用前置或者后置
+//                            .setBeepEnabled(false)// 是否开启声音,扫完码之后会"哔"的一声
+//                            .setBarcodeImageEnabled(true)// 扫完码之后生成二维码的图片
+//                            .initiateScan();// 初始化扫码
+//                }
+//            });
+//        } else {
+//            Log.e("IndexActivity", "Button is null");
+//        }
     }
-
-
+    // 处理按钮点击事件
+    public void onScanCodeClicked(View view) {
+        // 处理扫码逻辑
+        // 在这里处理扫码的逻辑，例如启动扫码页面等
+        // 当前页面跳转扫码页面
+        Intent intent = new Intent(IndexActivity.this, CaptureActivity.class);
+        new IntentIntegrator(IndexActivity.this)
+                .setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)// 扫码的类型,可选：一维码，二维码，一/二维码
+                .setCaptureActivity(CarmerActivity.class)
+                .setPrompt("请对准二维码")// 设置提示语
+                .setCameraId(0)// 选择摄像头,可使用前置或者后置
+                .setBeepEnabled(false)// 是否开启声音,扫完码之后会"哔"的一声
+                .setBarcodeImageEnabled(true)// 扫完码之后生成二维码的图片
+                .initiateScan();// 初始化扫码
+    }
     /**
      * 初始化页面
      */
@@ -158,7 +187,6 @@ public class IndexActivity extends AppCompatActivity {
                         break;
                 }
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
 
@@ -255,19 +283,6 @@ public class IndexActivity extends AppCompatActivity {
             }
         });
     }
-
-    /**
-     * 扫码绑定触发事件
-     * @param view
-     */
-//    public void scanCode(View view) {
-//        // 1. 调用手机摄像头权限
-//        // 2. 读取二维码信息
-//        // 3. 发送请求（告知pc端二维码状态改为已扫描待确定）
-//        // 3. 解密
-//        // 4. 封装
-//        // 5. 发送请求（告知pc端二维码状态改为已确定）
-//    }
 
     /**
      * 视图适配器

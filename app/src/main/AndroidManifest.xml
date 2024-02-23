@@ -47,22 +47,18 @@
         <activity
             android:name=".CarmerActivity"
             android:label="CarmerActivity" />
-<!--        <activity-->
-<!--            android:name=".MsgActivity"-->
-<!--            android:label="MsgActivity" />-->
-<!--        <activity-->
-<!--            android:name=".MeActivity"-->
-<!--            android:label="MeActivity" />-->
-<!--        <activity-->
-<!--            android:name=".FindActivity"-->
-<!--            android:label="FindActivity" />-->
-<!--        <activity-->
-<!--            android:name=".PeopleActivity"-->
-<!--            android:label="PeopleActivity" />-->
-<!--        <activity-->
-<!--            android:name=".CarmerActivity"-->
-<!--            android:label="CarmerActivity">-->
-<!--        </activity>-->
+        <activity
+            android:name=".MsgActivity"
+            android:label="MsgActivity" />
+        <activity
+            android:name=".MeActivity"
+            android:label="MeActivity" />
+        <activity
+            android:name=".FindActivity"
+            android:label="FindActivity" />
+        <activity
+            android:name=".PeopleActivity"
+            android:label="PeopleActivity" />
 
     </application>
 
