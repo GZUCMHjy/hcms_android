@@ -10,7 +10,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -49,10 +51,8 @@ public class IndexActivity extends AppCompatActivity {
     private RadioGroup mRadioGroup;
     private RadioButton tab1,tab2,tab3,tab4;  //四个单选按钮
     private List<View> mViews;   //存放视图
-    private static final int CAMERA_PERMISSION_REQUEST_CODE = 1001;
-    private static final int OPEN_CAMERA_REQUEST_CODE = 1002;
 
-    private Button openCameraButton;
+    private ListView listView;
 
     /**
      * 启动IndexActivity
@@ -78,6 +78,7 @@ public class IndexActivity extends AppCompatActivity {
                     mViewPager.setCurrentItem(1);
                 } else if (checkedId == R.id.rb_search) {
                     mViewPager.setCurrentItem(2);
+                    listHc();
                 } else if (checkedId == R.id.rb_me) {
                     mViewPager.setCurrentItem(3);
                 }
@@ -260,6 +261,22 @@ public class IndexActivity extends AppCompatActivity {
     }
 
     /**
+     * 查询全部危化品列表
+     */
+    public void listHc(){
+        // 2. 绑定控件
+        listView=(ListView) findViewById(R.id.list_view);
+        // 3. 准备假数据 todo 接上后端接口
+        List<String> hcInfos = new ArrayList<>();
+        hcInfos.add("盐酸 Hydrochloric acid 余量：100ml");
+        hcInfos.add("甲酸 Formic acid 余量：100ml");
+        hcInfos.add("乙酸 Acetic acid 余量：100ml ");
+        ArrayAdapter<String> adapter=new ArrayAdapter<>(IndexActivity.this,android.R.layout.simple_list_item_1,hcInfos);
+        // 4. 将适配器加载到控件中
+        listView.setAdapter(adapter);
+    }
+
+    /**
      * 视图适配器
      */
     private class MyViewPagerAdapter extends PagerAdapter {
@@ -417,6 +434,13 @@ public class IndexActivity extends AppCompatActivity {
             }
         }).start();
     }
+
+    /**
+     * 扫码登录pc端账号
+     * @param code
+     * @return
+     * @throws IOException
+     */
     public boolean scanLogin(QRcode code) throws IOException {
         new Thread(new Runnable() {
             String message = null;

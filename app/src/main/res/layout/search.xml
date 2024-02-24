@@ -3,12 +3,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/white"
     tools:context=".SearchActivity">
+    <androidx.appcompat.widget.SearchView
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:outlineSpotShadowColor="@color/teal"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:background="@drawable/search_view_bg"
+        android:theme="@style/searchStyle"
+        app:queryHint="请输入关键字"
+        app:iconifiedByDefault="false"
+        app:searchIcon="@mipmap/ic_search">
+    </androidx.appcompat.widget.SearchView>
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
+        android:textColor="@color/black"
         android:layout_height="match_parent"/>
 
 </LinearLayout>
