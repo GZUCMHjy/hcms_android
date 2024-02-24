@@ -72,11 +72,11 @@ public class IndexActivity extends AppCompatActivity {
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                if (checkedId == R.id.rb_msg) {
+                if(checkedId == R.id.rb_index){
                     mViewPager.setCurrentItem(0);
-                } else if (checkedId == R.id.rb_people) {
+                } else if (checkedId == R.id.rb_announce) {
                     mViewPager.setCurrentItem(1);
-                } else if (checkedId == R.id.rb_find) {
+                } else if (checkedId == R.id.rb_search) {
                     mViewPager.setCurrentItem(2);
                 } else if (checkedId == R.id.rb_me) {
                     mViewPager.setCurrentItem(3);
@@ -111,15 +111,15 @@ public class IndexActivity extends AppCompatActivity {
         //初始化控件
         mViewPager=findViewById(R.id.viewpager);
         mRadioGroup=findViewById(R.id.rg_tab);
-        tab1=findViewById(R.id.rb_msg);
-        tab2=findViewById(R.id.rb_people);
-        tab3=findViewById(R.id.rb_find);
+        tab1=findViewById(R.id.rb_index);
+        tab2=findViewById(R.id.rb_announce);
+        tab3=findViewById(R.id.rb_search);
         tab4=findViewById(R.id.rb_me);
 
         mViews=new ArrayList<View>();//加载，添加视图
-        mViews.add(LayoutInflater.from(this).inflate(R.layout.msg,null));
-        mViews.add(LayoutInflater.from(this).inflate(R.layout.people,null));
-        mViews.add(LayoutInflater.from(this).inflate(R.layout.find,null));
+        mViews.add(LayoutInflater.from(this).inflate(R.layout.index,null));
+        mViews.add(LayoutInflater.from(this).inflate(R.layout.announce,null));
+        mViews.add(LayoutInflater.from(this).inflate(R.layout.search,null));
         mViews.add(LayoutInflater.from(this).inflate(R.layout.me,null));
 
         mViewPager.setAdapter(new MyViewPagerAdapter());//设置一个适配器

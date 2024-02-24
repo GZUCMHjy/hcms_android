@@ -9,6 +9,6 @@ public class FindActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.find);
+        setContentView(R.layout.search);
     }
 }

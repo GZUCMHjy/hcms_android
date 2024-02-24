@@ -23,46 +23,46 @@
         android:background="@color/white">
 
         <RadioButton
-            android:id="@+id/rb_msg"
+            android:id="@+id/rb_index"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
             android:checked="true"
-            android:drawableTop="@drawable/msg_drawable"
+            android:drawableTop="@drawable/index_drawable"
             android:gravity="center"
             android:paddingLeft="0dp"
             android:textColor="@android:color/black"
             android:textStyle="bold"
             android:textSize="10dp"
-            android:text="信息" />
+            android:text="首页" />
         <RadioButton
-            android:id="@+id/rb_people"
+            android:id="@+id/rb_announce"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@drawable/people_drawable"
+            android:drawableTop="@drawable/announce_drawable"
             android:gravity="center"
             android:paddingLeft="0dp"
             android:textColor="@android:color/black"
             android:textStyle="bold"
             android:textSize="10dp"
-            android:text="联系人" />
+            android:text="公告" />
 
         <RadioButton
-            android:id="@+id/rb_find"
+            android:id="@+id/rb_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@drawable/find_drawable"
+            android:drawableTop="@drawable/search_drawable"
             android:gravity="center"
             android:textColor="@android:color/black"
             android:textStyle="bold"
             android:paddingLeft="0dp"
             android:textSize="10dp"
-            android:text="发现" />
+            android:text="查询危化品" />
         <RadioButton
             android:id="@+id/rb_me"
             android:layout_width="0dp"
