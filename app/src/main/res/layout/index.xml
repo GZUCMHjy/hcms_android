@@ -5,7 +5,7 @@
     android:layout_height="50dp"
     android:autofillHints="请输入关键字"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:background="@color/white">
 
     <LinearLayout
@@ -42,6 +42,33 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dp"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@mipmap/indexbg3">
+        </ImageView>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                android:fadeScrollbars="true"
+                android:text="一、建设背景\n
+       为认真贯彻习近平总书记关于危险化学品安全和工业互联网发展应用的重要指示精神和党中央、国务院有关决策部署，落实《“工业互联网+安全生产” 行动计划（ 2021—2023 年） 》和《“工业互联网+危化安全生产”试点建设方案》 工作安排。应急管理部相继发布《危险化学品企业安全风险智能化管控平台建设指南（试行）》和《化工园区安全风险智能化管控平台建设指南（试行）》等相关文件，全国危险化学品企业需根据国家文件对企业数字化管理转型升级。并依靠物联网、 大数据、 云计算、 人工智能（ AI） 、 5G 等新一代信息技术， 建设危险化学品企业安全风险智能化管控平台，加强在感知、 监测、 预警、 处置、 评估等方面赋能危险化学品企业， 破解企业安全生产的痛点、 难点、 堵点问题， 是实现危险化学品企业转型升级的必由之路。\n
+二、建设目标\n
+      危险化学品企业安全风险智能化管控平台建设坚持以有效防范化解重大安全风险为目标， 突出安全基础管理、 重大危险源安全管理、 安全风险分级管控和隐患排查治理双重预防机制、 特殊作业许可与作业过程管理、智能巡检、 人员定位等基本功能， 打造企业“工业互联网+危化安全生产” 新基础设施建设， 推动企业安全基础管理数字化、风险预警精准化、 风险管控系统化、 危险作业无人化、 运维辅助远程化， 为实现危险化学品企业安全风险管控数字化转型智能化升级注入新动能，切实落实企业安全生产主体责任，全面提升企业安全生产管理水平。"
+                android:textColor="@color/black"
+                android:textSize="25dp">
+            </TextView>
+        </ScrollView>
+    </LinearLayout>
 
 <!--    <TextView-->
 <!--        android:layout_width="236dp"-->

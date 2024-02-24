@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="500dp"
+    android:layout_height="match_parent"
     android:orientation="horizontal"
     android:background="@color/white">
-    <ImageView
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="500dp"-->
+<!--        android:layout_marginTop="80dp"-->
+<!--        android:src="@mipmap/zz_zhuhai"/>-->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_marginTop="80dp"
-        android:src="@mipmap/zz_zhuhai"/>
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="people"-->
-<!--        android:textSize="50sp"-->
-<!--        android:textColor="#ff0000"-->
-<!--        android:layout_gravity="center" />-->
+        android:layout_height="match_parent"
+
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@mipmap/announcebg">
+        </ImageView>
+        <!--todo 1. 设计成listView 列表控件 -->
+        <!--todo 2. 调用后端接口查看通知-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                android:fadeScrollbars="true"
+                android:text="        管理员王文浩：\n        鉴于G306仓库的库存已达饱和状态，为确保安全及合规性，请各位教师暂停向G306仓库申购新的危化品，以避免不必要的存储压力及潜在风险。感谢您的理解与配合。\n
+       管理员李江南：\n        随着年末的来临，G306仓库中的危化品数量已超出安全存储限制。为了保障安全并有效管理，我们已启动年末危化品调配使用程序。请各实验室负责人立即清点各自分库中存储的危化品，确保无安全隐患。同时，总库的危化品现已开放申请调配使用，请各位负责人密切关注危化品目录，按需调配，确保实验室工作的顺利进行。感谢大家的支持与配合，让我们共同努力，确保实验室安全。"
+                android:textColor="@color/black"
+                android:textSize="25dp">
+            </TextView>
+        </ScrollView>
+    </LinearLayout>
 </LinearLayout>
