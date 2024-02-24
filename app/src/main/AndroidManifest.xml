@@ -54,7 +54,7 @@
             android:name=".MeActivity"
             android:label="MeActivity" />
         <activity
-            android:name=".FindActivity"
+            android:name=".SearchActivity"
             android:label="FindActivity" />
         <activity
             android:name=".PeopleActivity"
