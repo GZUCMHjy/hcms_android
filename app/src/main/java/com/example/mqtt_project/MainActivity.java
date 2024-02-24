@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mqtt_project.common.BaseResponse;
 import com.example.mqtt_project.constant.Constant;
+import com.example.mqtt_project.reponse.LoginResponse;
 import com.example.mqtt_project.request.LoginRequest;
 import com.example.mqtt_project.utils.JsonUtil;
 
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                             String jsonStr = JsonUtil.toJson(loginRequest);
                             // 构建请求url
                             Request request = new Request.Builder()
-                                    .url(Constant.BASE_URL + "/login") // 登录请求
+                                    .url(Constant.BASE_URL + "user/login") // 登录请求
                                     .post(RequestBody.create(MediaType.parse("application/json"), jsonStr))
                                     .build();// 创建http请求
                             Response response = okHttpClient.newCall(request).execute();
@@ -74,14 +75,22 @@ public class MainActivity extends AppCompatActivity {
                             SharedPreferences sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putString("session",sessionid);
-                            // 要提交上去，否则取不到
-                            editor.commit();
+
                             // 解析服务器返回的json对象成json字符串
                             String objStr = response.body().string();
                             // 字符串再转成Java对象
                             BaseResponse baseResponse = JsonUtil.fromJson(objStr, BaseResponse.class);
                             Object data = (Object) baseResponse.getData();
+                            // 转成字符串
+                            String json = JsonUtil.toJson(data);
+                            // 转成指定对象类型
+                            LoginResponse loginResponse = JsonUtil.fromJson(json, LoginResponse.class);
+                            // 获取accountId
+                            Integer accountId = loginResponse.getAccount_id();
+                            editor.putString("accountId",accountId.toString());
                             String message = baseResponse.getMessage();
+                            // 要提交上去，否则取不到
+                            editor.commit();
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -92,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                                     }else{
                                         Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
                                     }
+                                    // return null;
                                 }
                             });
                             // 跳转页面
@@ -102,9 +112,11 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Toast.makeText(MainActivity.this, "网络连接失败", Toast.LENGTH_SHORT).show();
+                                    // return null;
                                 }
                             });
                         }
+                        // return null;
                     }
                 }).start();
 

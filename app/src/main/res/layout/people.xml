@@ -4,16 +4,16 @@
     android:layout_height="500dp"
     android:orientation="horizontal"
     android:background="@color/white">
-<!--    <ImageView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="500dp"-->
-<!--        android:layout_marginTop="80dp"-->
-<!--        android:src="@mipmap/zz_zhuhai"/>-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="people"
-        android:textSize="50sp"
-        android:textColor="#ff0000"
-        android:layout_gravity="center" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="80dp"
+        android:src="@mipmap/zz_zhuhai"/>
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="people"-->
+<!--        android:textSize="50sp"-->
+<!--        android:textColor="#ff0000"-->
+<!--        android:layout_gravity="center" />-->
 </LinearLayout>
